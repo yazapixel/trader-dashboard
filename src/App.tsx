@@ -5,6 +5,7 @@ import { CanvasChart } from './components/Chart/CanvasChart';
 import { OrderTicket } from './components/OrderTicket/OrderTicket';
 import { OrderBook } from './components/OrderBook/OrderBook';
 import { PositionsPanel } from './components/Positions/PositionsPanel';
+import { NewsPanel } from './components/News/NewsPanel';
 
 export function App() {
   const {
@@ -56,11 +57,14 @@ export function App() {
         </div>
 
         {activeInstrument && (
-          <OrderTicket 
-            instrument={activeInstrument}
-            account={account}
-            onPlaceOrder={placeOrder}
-          />
+          <div className="right-column">
+            <OrderTicket 
+              instrument={activeInstrument}
+              account={account}
+              onPlaceOrder={placeOrder}
+            />
+            <NewsPanel activeSymbols={activeInstrument ? [activeInstrument.symbol] : []} />
+          </div>
         )}
       </main>
     </div>
