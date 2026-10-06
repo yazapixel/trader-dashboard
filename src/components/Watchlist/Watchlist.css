@@ -1,0 +1,106 @@
+.watchlist {
+  width: 280px;
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+}
+
+.watchlist-header {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--bg-elevated);
+}
+
+.search-bar input {
+  width: 100%;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.category-filters button {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.category-filters button.active {
+  background-color: var(--primary);
+  color: var(--bg-base);
+  border-color: var(--primary);
+}
+
+.instrument-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.instrument-item {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.instrument-item:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.instrument-item.active {
+  background-color: rgba(56, 189, 248, 0.05);
+  border-left: 3px solid var(--primary);
+  padding-left: 12px;
+}
+
+.inst-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.inst-symbol {
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.inst-category {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.inst-price-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.inst-price {
+  font-weight: bold;
+  font-size: 0.85rem;
+  font-family: ui-monospace, monospace;
+}
+
+.inst-change {
+  font-size: 0.7rem;
+}

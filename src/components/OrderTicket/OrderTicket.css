@@ -1,0 +1,184 @@
+.order-ticket {
+  width: 320px;
+  background-color: var(--bg-surface);
+  border-left: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-header {
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.side-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: var(--bg-elevated);
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.side-btn.buy.active {
+  background-color: var(--bullish);
+  color: var(--bg-base);
+}
+
+.side-btn.sell.active {
+  background-color: var(--bearish);
+  color: var(--bg-base);
+}
+
+.ticket-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.type-selector {
+  display: flex;
+  background-color: var(--bg-elevated);
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.type-selector button {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 6px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.type-selector button.active {
+  background-color: var(--border-focus);
+  color: var(--text-primary);
+}
+
+input[type="number"], 
+input[type="text"] {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: ui-monospace, monospace;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.lot-input {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.quick-lots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.quick-lots button {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 4px;
+  font-size: 0.65rem;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--primary);
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.risk-preview {
+  background-color: var(--bg-elevated);
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.preview-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+.preview-item span:first-child {
+  color: var(--text-muted);
+}
+
+.place-order-btn {
+  margin-top: 10px;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.buy .place-order-btn {
+  background-color: var(--bullish);
+  color: var(--bg-base);
+}
+
+.sell .place-order-btn {
+  background-color: var(--bearish);
+  color: var(--bg-base);
+}
+
+.place-order-btn:disabled {
+  background-color: var(--bg-elevated);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.btn-subtext {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  font-weight: normal;
+}
