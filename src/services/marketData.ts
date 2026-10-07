@@ -1,276 +1,283 @@
-import type { Instrument, Candle, AssetCategory } from '../types/trading';
+import { Candle, Instrument, OrderBookData, Timeframe } from '../types/trading';
 
-export const DEFAULT_INSTRUMENTS: Instrument[] = [
+export const INITIAL_INSTRUMENTS: Instrument[] = [
   {
-    id: 'eurusd',
+    id: 'EURUSD',
     symbol: 'EUR/USD',
     name: 'Euro / US Dollar',
-    category: 'Forex',
-    price: 1.0850,
-    change24h: 0.15,
-    high24h: 1.0890,
-    low24h: 1.0810,
-    volume: 450000000,
-    bid: 1.0849,
-    ask: 1.0851,
-    spread: 0.2,
+    category: 'forex',
+    price: 1.08450,
+    change24h: 0.35,
+    high24h: 1.08720,
+    low24h: 1.08110,
+    volume: 1452000,
+    bid: 1.08448,
+    ask: 1.08452,
+    spread: 0.4,
     decimals: 5,
     pipSize: 0.0001,
     minLot: 0.01,
     maxLot: 100,
-    defaultLeverage: 30
+    defaultLeverage: 100,
   },
   {
-    id: 'btcusd',
-    symbol: 'BTC/USD',
-    name: 'Bitcoin / US Dollar',
-    category: 'Crypto',
-    price: 65420.50,
-    change24h: 2.4,
-    high24h: 66100.00,
-    low24h: 64200.00,
-    volume: 32000000000,
-    bid: 65415.00,
-    ask: 65426.00,
-    spread: 11.0,
-    decimals: 2,
-    pipSize: 1.0,
-    minLot: 0.0001,
-    maxLot: 10,
-    defaultLeverage: 100
-  },
-  {
-    id: 'spx500',
-    symbol: 'SPX 500',
-    name: 'S&P 500 Index',
-    category: 'Indices',
-    price: 5450.25,
-    change24h: -0.45,
-    high24h: 5480.00,
-    low24h: 5430.00,
-    volume: 1200000000,
-    bid: 5450.00,
-    ask: 5450.50,
-    spread: 0.5,
-    decimals: 2,
-    pipSize: 0.01,
-    minLot: 0.1,
-    maxLot: 500,
-    defaultLeverage: 20
-  },
-  {
-    id: 'xauusd',
-    symbol: 'XAU/USD',
-    name: 'Gold / US Dollar',
-    category: 'Commodities',
-    price: 2345.60,
-    change24h: 0.85,
-    high24h: 2360.00,
-    low24h: 2330.00,
-    volume: 850000000,
-    bid: 2345.40,
-    ask: 2345.80,
-    spread: 0.4,
-    decimals: 2,
-    pipSize: 0.1,
-    minLot: 0.01,
-    maxLot: 200,
-    defaultLeverage: 50
-  },
-  {
-    id: 'gbpusd',
+    id: 'GBPUSD',
     symbol: 'GBP/USD',
     name: 'British Pound / US Dollar',
-    category: 'Forex',
-    price: 1.2720,
-    change24h: -0.12,
-    high24h: 1.2750,
-    low24h: 1.2690,
-    volume: 320000000,
-    bid: 1.2719,
-    ask: 1.2721,
-    spread: 0.2,
+    category: 'forex',
+    price: 1.29820,
+    change24h: -0.18,
+    high24h: 1.30250,
+    low24h: 1.29540,
+    volume: 984000,
+    bid: 1.29817,
+    ask: 1.29823,
+    spread: 0.6,
     decimals: 5,
     pipSize: 0.0001,
     minLot: 0.01,
     maxLot: 100,
-    defaultLeverage: 30
+    defaultLeverage: 100,
   },
   {
-    id: 'ethusd',
-    symbol: 'ETH/USD',
-    name: 'Ethereum / US Dollar',
-    category: 'Crypto',
-    price: 3450.75,
-    change24h: 1.8,
-    high24h: 3510.00,
-    low24h: 3390.00,
-    volume: 15000000000,
-    bid: 3450.20,
-    ask: 3451.30,
-    spread: 1.1,
-    decimals: 2,
-    pipSize: 0.1,
-    minLot: 0.01,
-    maxLot: 500,
-    defaultLeverage: 100
-  },
-  {
-    id: 'nas100',
-    symbol: 'NAS 100',
-    name: 'Nasdaq 100 Index',
-    category: 'Indices',
-    price: 19250.40,
-    change24h: -0.65,
-    high24h: 19400.00,
-    low24h: 19150.00,
-    volume: 2100000000,
-    bid: 19250.00,
-    ask: 19250.80,
-    spread: 0.8,
-    decimals: 2,
-    pipSize: 0.01,
-    minLot: 0.1,
-    maxLot: 500,
-    defaultLeverage: 20
-  },
-  {
-    id: 'xtiusd',
-    symbol: 'XTI/USD',
-    name: 'Crude Oil',
-    category: 'Commodities',
-    price: 81.45,
-    change24h: -1.2,
-    high24h: 83.00,
-    low24h: 80.50,
-    volume: 450000000,
-    bid: 81.42,
-    ask: 81.48,
-    spread: 0.06,
-    decimals: 2,
-    pipSize: 0.01,
-    minLot: 0.1,
-    maxLot: 500,
-    defaultLeverage: 50
-  },
-  {
-    id: 'usdjpy',
+    id: 'USDJPY',
     symbol: 'USD/JPY',
     name: 'US Dollar / Japanese Yen',
-    category: 'Forex',
-    price: 158.45,
-    change24h: 0.35,
-    high24h: 159.00,
-    low24h: 157.80,
-    volume: 520000000,
-    bid: 158.44,
-    ask: 158.46,
-    spread: 0.2,
+    category: 'forex',
+    price: 153.420,
+    change24h: 0.72,
+    high24h: 153.890,
+    low24h: 152.310,
+    volume: 1210000,
+    bid: 153.417,
+    ask: 153.423,
+    spread: 0.6,
     decimals: 3,
     pipSize: 0.01,
     minLot: 0.01,
     maxLot: 100,
-    defaultLeverage: 30
+    defaultLeverage: 100,
   },
   {
-    id: 'solusd',
-    symbol: 'SOL/USD',
-    name: 'Solana / US Dollar',
-    category: 'Crypto',
-    price: 145.20,
-    change24h: 4.5,
-    high24h: 148.00,
-    low24h: 138.00,
-    volume: 4500000000,
-    bid: 145.10,
-    ask: 145.30,
-    spread: 0.2,
-    decimals: 2,
-    pipSize: 0.1,
-    minLot: 0.1,
-    maxLot: 1000,
-    defaultLeverage: 100
-  },
-  {
-    id: 'us30',
-    symbol: 'US 30',
-    name: 'Dow Jones Index',
-    category: 'Indices',
-    price: 39150.75,
-    change24h: -0.15,
-    high24h: 39300.00,
-    low24h: 39050.00,
-    volume: 850000000,
-    bid: 39150.00,
-    ask: 39151.50,
-    spread: 1.5,
-    decimals: 2,
-    pipSize: 1.0,
-    minLot: 0.1,
-    maxLot: 500,
-    defaultLeverage: 20
-  },
-  {
-    id: 'audusd',
+    id: 'AUDUSD',
     symbol: 'AUD/USD',
     name: 'Australian Dollar / US Dollar',
-    category: 'Forex',
-    price: 0.6650,
-    change24h: 0.25,
-    high24h: 0.6680,
-    low24h: 0.6620,
-    volume: 150000000,
-    bid: 0.6649,
-    ask: 0.6651,
-    spread: 0.2,
+    category: 'forex',
+    price: 0.65820,
+    change24h: 0.12,
+    high24h: 0.66100,
+    low24h: 0.65590,
+    volume: 640000,
+    bid: 0.65817,
+    ask: 0.65823,
+    spread: 0.6,
     decimals: 5,
     pipSize: 0.0001,
     minLot: 0.01,
     maxLot: 100,
-    defaultLeverage: 30
+    defaultLeverage: 100,
+  },
+  {
+    id: 'BTCUSD',
+    symbol: 'BTC/USD',
+    name: 'Bitcoin / US Dollar',
+    category: 'crypto',
+    price: 68420.0,
+    change24h: 3.45,
+    high24h: 69200.0,
+    low24h: 66150.0,
+    volume: 48200,
+    bid: 68412.0,
+    ask: 68428.0,
+    spread: 16.0,
+    decimals: 2,
+    pipSize: 1.0,
+    minLot: 0.001,
+    maxLot: 20,
+    defaultLeverage: 20,
+  },
+  {
+    id: 'ETHUSD',
+    symbol: 'ETH/USD',
+    name: 'Ethereum / US Dollar',
+    category: 'crypto',
+    price: 3540.50,
+    change24h: 2.10,
+    high24h: 3610.00,
+    low24h: 3450.00,
+    volume: 95400,
+    bid: 3540.00,
+    ask: 3541.00,
+    spread: 1.0,
+    decimals: 2,
+    pipSize: 0.1,
+    minLot: 0.01,
+    maxLot: 50,
+    defaultLeverage: 20,
+  },
+  {
+    id: 'SOLUSD',
+    symbol: 'SOL/USD',
+    name: 'Solana / US Dollar',
+    category: 'crypto',
+    price: 184.25,
+    change24h: 5.82,
+    high24h: 189.50,
+    low24h: 172.10,
+    volume: 231000,
+    bid: 184.20,
+    ask: 184.30,
+    spread: 0.1,
+    decimals: 2,
+    pipSize: 0.01,
+    minLot: 0.1,
+    maxLot: 500,
+    defaultLeverage: 10,
+  },
+  {
+    id: 'SPX500',
+    symbol: 'SPX 500',
+    name: 'S&P 500 Index CFD',
+    category: 'indices',
+    price: 5860.25,
+    change24h: 0.48,
+    high24h: 5875.00,
+    low24h: 5830.50,
+    volume: 780000,
+    bid: 5860.00,
+    ask: 5860.50,
+    spread: 0.5,
+    decimals: 2,
+    pipSize: 0.25,
+    minLot: 0.1,
+    maxLot: 100,
+    defaultLeverage: 50,
+  },
+  {
+    id: 'NAS100',
+    symbol: 'NAS 100',
+    name: 'Nasdaq 100 Index CFD',
+    category: 'indices',
+    price: 20340.50,
+    change24h: 0.85,
+    high24h: 20420.00,
+    low24h: 20180.00,
+    volume: 890000,
+    bid: 20340.00,
+    ask: 20341.00,
+    spread: 1.0,
+    decimals: 2,
+    pipSize: 0.5,
+    minLot: 0.1,
+    maxLot: 100,
+    defaultLeverage: 50,
+  },
+  {
+    id: 'XAUUSD',
+    symbol: 'XAU/USD',
+    name: 'Gold / US Dollar',
+    category: 'commodities',
+    price: 2735.40,
+    change24h: 1.15,
+    high24h: 2748.20,
+    low24h: 2712.00,
+    volume: 620000,
+    bid: 2735.25,
+    ask: 2735.55,
+    spread: 0.3,
+    decimals: 2,
+    pipSize: 0.01,
+    minLot: 0.01,
+    maxLot: 50,
+    defaultLeverage: 50,
+  },
+  {
+    id: 'XTIUSD',
+    symbol: 'XTI/USD',
+    name: 'WTI Crude Oil',
+    category: 'commodities',
+    price: 71.85,
+    change24h: -1.45,
+    high24h: 73.40,
+    low24h: 71.10,
+    volume: 410000,
+    bid: 71.83,
+    ask: 71.87,
+    spread: 0.04,
+    decimals: 2,
+    pipSize: 0.01,
+    minLot: 0.1,
+    maxLot: 100,
+    defaultLeverage: 20,
   }
 ];
 
-export function getInstruments(): Instrument[] {
-  return DEFAULT_INSTRUMENTS;
-}
-
-export function generateHistory(instrument: Instrument, timeframe: string, count: number = 200): Candle[] {
+export function generateHistoricalCandles(basePrice: number, timeframe: Timeframe, count: number = 100): Candle[] {
   const candles: Candle[] = [];
-  const now = Math.floor(Date.now() / 60000) * 60000;
-  let interval = 60000; // 1m default
+  const now = Date.now();
+  
+  let timeframeMs = 60 * 1000; // 1m
+  if (timeframe === '5m') timeframeMs = 5 * 60 * 1000;
+  if (timeframe === '15m') timeframeMs = 15 * 60 * 1000;
+  if (timeframe === '1h') timeframeMs = 60 * 60 * 1000;
+  if (timeframe === '4h') timeframeMs = 4 * 60 * 60 * 1000;
+  if (timeframe === '1d') timeframeMs = 24 * 60 * 60 * 1000;
 
-  switch (timeframe) {
-    case '5m': interval = 5 * 60000; break;
-    case '15m': interval = 15 * 60000; break;
-    case '1h': interval = 60 * 60000; break;
-    case '4h': interval = 4 * 60 * 60000; break;
-    case '1d': interval = 24 * 60 * 60000; break;
-  }
+  let currentPrice = basePrice * (1 - (count * 0.001)); // start slightly lower for trend
+  const volatility = basePrice * 0.0015;
 
-  let lastClose = instrument.price;
-  const volatility = instrument.category === 'Crypto' ? 0.005 : (instrument.category === 'Forex' ? 0.0005 : 0.001);
-
-  for (let i = count - 1; i >= 0; i--) {
-    const timestamp = now - (i * interval);
-    
-    // Brownian motion for OHLC
-    const change = lastClose * volatility * (Math.random() - 0.5);
-    const open = lastClose - change;
-    const close = lastClose;
-    const high = Math.max(open, close) + (Math.random() * lastClose * volatility * 0.5);
-    const low = Math.min(open, close) - (Math.random() * lastClose * volatility * 0.5);
-    const volume = Math.floor(Math.random() * 1000) + 100;
+  for (let i = count; i >= 0; i--) {
+    const timestamp = now - (i * timeframeMs);
+    const change = (Math.random() - 0.49) * volatility;
+    const open = currentPrice;
+    const close = open + change;
+    const high = Math.max(open, close) + Math.random() * (volatility * 0.6);
+    const low = Math.min(open, close) - Math.random() * (volatility * 0.6);
+    const volume = Math.floor(Math.random() * 5000) + 500;
 
     candles.push({ timestamp, open, high, low, close, volume });
-    lastClose = open; // iterate backwards
+    currentPrice = close;
   }
 
-  return candles.reverse(); // put back in chronological order
+  // Ensure last candle close matches current basePrice roughly
+  if (candles.length > 0) {
+    candles[candles.length - 1].close = basePrice;
+    candles[candles.length - 1].high = Math.max(candles[candles.length - 1].high, basePrice);
+    candles[candles.length - 1].low = Math.min(candles[candles.length - 1].low, basePrice);
+  }
+
+  return candles;
 }
 
-export function simulateTick(currentPrice: number, category: AssetCategory): number {
-  const volatility = category === 'Crypto' ? 0.0005 : (category === 'Forex' ? 0.00005 : 0.0001);
+export function generateOrderBook(midPrice: number, decimals: number, spread: number): OrderBookData {
+  const bids = [];
+  const asks = [];
+  const step = midPrice * 0.0001;
+
+  let bidTotal = 0;
+  for (let i = 1; i <= 10; i++) {
+    const price = Number((midPrice - (spread / 2) - (i * step)).toFixed(decimals));
+    const size = Number((Math.random() * 2 + 0.1).toFixed(2));
+    bidTotal += size;
+    bids.push({ price, size, total: Number(bidTotal.toFixed(2)) });
+  }
+
+  let askTotal = 0;
+  for (let i = 1; i <= 10; i++) {
+    const price = Number((midPrice + (spread / 2) + (i * step)).toFixed(decimals));
+    const size = Number((Math.random() * 2 + 0.1).toFixed(2));
+    askTotal += size;
+    asks.push({ price, size, total: Number(askTotal.toFixed(2)) });
+  }
+
+  return { bids, asks };
+}
+
+export function simulateTick(currentPrice: number, category: string): number {
+  const volatility =
+    category === 'crypto' ? 0.0004 :
+    category === 'forex'  ? 0.00004 :
+    0.0001;
   const change = currentPrice * volatility * (Math.random() - 0.5);
   return currentPrice + change;
 }

@@ -1,90 +1,192 @@
 .terminal-header {
-  height: 60px;
-  background-color: var(--bg-elevated);
-  border-bottom: 1px solid var(--border-subtle);
+  height: 56px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  justify-content: space-between;
+  padding: 0 16px;
+  gap: 16px;
+  user-select: none;
+  z-index: 100;
 }
 
-.header-left {
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 200px;
+}
+
+.brand-logo-icon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, var(--accent-cyan), #0284c7);
+  border-radius: 4px;
+}
+
+.brand-title h1 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+}
+
+.brand-title span {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.header-ticker-tape {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  padding: 0 16px;
+  height: 100%;
+}
+
+.ticker-track {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ticker-track::-webkit-scrollbar {
+  display: none;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.ticker-item:hover, .ticker-item.active {
+  background: var(--bg-surface);
+}
+
+.ticker-symbol {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.ticker-price {
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.ticker-change {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ticker-change.positive {
+  color: var(--accent-emerald);
+}
+
+.ticker-change.negative {
+  color: var(--accent-rose);
+}
+
+.header-metrics {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.logo {
-  font-weight: 900;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
-  color: var(--text-primary);
+.metric-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.metric-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-value {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.metric-value.positive {
+  color: var(--accent-emerald);
+}
+
+.metric-value.negative {
+  color: var(--accent-rose);
+}
+
+.metric-value.warning {
+  color: var(--accent-amber);
+}
+
+.header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  margin-left: 10px;
+  border-left: 1px solid var(--border-color);
+  padding-left: 16px;
 }
 
-.logo-accent {
-  color: var(--primary);
+.btn-terminal {
+  background: var(--accent-cyan);
+  color: #0b0f17;
+  border: none;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.15s;
 }
 
-.logo-icon {
-  color: var(--primary);
-  font-size: 1.4rem;
+.btn-terminal:hover {
+  opacity: 0.9;
+}
+
+.btn-terminal-outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-terminal-outline:hover {
+  border-color: var(--text-muted);
+  color: var(--text-primary);
 }
 
 .system-status {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.65rem;
-  font-weight: bold;
+  font-size: 11px;
   color: var(--text-muted);
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 4px 8px;
-  border-radius: 4px;
 }
 
 .status-dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-emerald);
   border-radius: 50%;
-}
-
-.status-dot.online {
-  background-color: var(--bullish);
-  box-shadow: 0 0 8px var(--bullish);
-}
-
-.account-metrics {
-  display: flex;
-  gap: 30px;
-}
-
-.metric {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.metric .label {
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.metric .value {
-  font-size: 0.9rem;
-  font-weight: bold;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-}
-
-.real-time-clock {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  box-shadow: 0 0 8px var(--accent-emerald);
 }

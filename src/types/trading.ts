@@ -1,4 +1,4 @@
-export type AssetCategory = 'Forex' | 'Crypto' | 'Indices' | 'Commodities';
+export type AssetCategory = 'forex' | 'crypto' | 'indices' | 'commodities';
 
 export interface Instrument {
   id: string;
@@ -29,22 +29,21 @@ export interface Candle {
   volume: number;
 }
 
-export type OrderSide = 'BUY' | 'SELL';
 export type OrderType = 'MARKET' | 'LIMIT' | 'STOP';
-export type OrderStatus = 'PENDING' | 'FILLED' | 'CANCELLED';
+export type OrderSide = 'BUY' | 'SELL';
 
 export interface Order {
   id: string;
   symbol: string;
   side: OrderSide;
   type: OrderType;
-  targetPrice?: number;
+  targetPrice: number;
   lots: number;
   leverage: number;
   margin: number;
   stopLoss?: number;
   takeProfit?: number;
-  status: OrderStatus;
+  status: 'PENDING' | 'EXECUTED' | 'CANCELLED';
   createdAt: number;
 }
 
@@ -73,7 +72,7 @@ export interface ClosedTrade {
   lots: number;
   pnl: number;
   closedAt: number;
-  closeReason: 'MANUAL' | 'TP' | 'SL';
+  closeReason: 'MARKET' | 'TAKE_PROFIT' | 'STOP_LOSS' | 'MANUAL';
 }
 
 export interface AccountState {
@@ -85,3 +84,16 @@ export interface AccountState {
   realizedPnl: number;
   dailyPnl: number;
 }
+
+export interface OrderBookLevel {
+  price: number;
+  size: number;
+  total: number;
+}
+
+export interface OrderBookData {
+  bids: OrderBookLevel[];
+  asks: OrderBookLevel[];
+}
+
+export type Timeframe = '1m' | '5m' | '15m' | '1h' | '4h' | '1d';
